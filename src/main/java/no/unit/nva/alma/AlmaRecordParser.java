@@ -93,7 +93,7 @@ public class AlmaRecordParser {
         return subfield.getCode() == MARC_SUBFIELD_A || subfield.getCode() == MARC_SUBFIELD_B;
     }
 
- private Optional<Record> getFirstMarcRecord(InputStream inputStream) throws TransformerException,
+    private Optional<Record> getFirstMarcRecord(InputStream inputStream) throws TransformerException,
             XPathExpressionException, IOException, SAXException, ParserConfigurationException {
 
         DocumentBuilder documentBuilder = createDocumentBuilder();
@@ -105,7 +105,7 @@ public class AlmaRecordParser {
             addExtractedRecordToResultDoc(element.get(), result);
 
             ByteArrayOutputStream outputStream = removeStylesheet(result);
-            optionalRecord =Optional.ofNullable(readRecordFromCleanXml(outputStream));
+            optionalRecord = Optional.ofNullable(readRecordFromCleanXml(outputStream));
         }
         return optionalRecord;
     }
