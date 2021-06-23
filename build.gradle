@@ -4,7 +4,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
-    id 'nebula.lint' version '16.15.9'
+    id 'nebula.lint' version '16.25.0'
 }
 
 group 'no.unit.nva'
