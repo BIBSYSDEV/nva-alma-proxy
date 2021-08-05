@@ -157,7 +157,7 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       BasePath: !Ref CustomDomainBasePath
-      DomainName: !Ref CustomDomain
+      DomainName: !Sub 'api.${CustomDomain}'
       RestApiId: !Ref NvaAlmaSruProxyApi
       Stage: !Ref NvaAlmaSruProxyApi.Stage
 
