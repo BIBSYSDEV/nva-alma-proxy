@@ -33,7 +33,7 @@ Parameters:
     Default: CustomDomain
     Description: Custom API to connect this lambda to
   CustomDomainBasePath:
-    Type: 'AWS::SSM::Parameter::Value<String>'
+    Type: String
     Default: alma
     Description: Base path mapping in CustomDomain
   AlmaSruHost:
