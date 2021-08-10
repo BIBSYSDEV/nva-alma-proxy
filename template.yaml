@@ -25,16 +25,20 @@ Globals:
 
 Parameters:
   CognitoAuthorizerArn:
-    Type: String
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: CognitoAuthorizerArn
     Description: Reference to Cognito UserPool for the stage
   CustomDomain:
-    Type: String
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: CustomDomain
     Description: Custom API to connect this lambda to
   CustomDomainBasePath:
     Type: String
+    Default: alma
     Description: Base path mapping in CustomDomain
   AlmaSruHost:
-    Type: String
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: AlmaSruHost
     Description: Address to Alma-SRU
 
 Resources:
@@ -153,7 +157,7 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       BasePath: !Ref CustomDomainBasePath
-      DomainName: !Ref CustomDomain
+      DomainName: !Sub 'api.${CustomDomain}'
       RestApiId: !Ref NvaAlmaSruProxyApi
       Stage: !Ref NvaAlmaSruProxyApi.Stage
 
