@@ -128,7 +128,6 @@ Resources:
     Properties:
       Environment:
         Variables:
-          ALMA_SRU_HOST: !Ref AlmaSruHost
           ALLOWED_ORIGIN:  '*'
       Handler: no.unit.nva.alma.FetchAlmaRecordHandler::handleRequest
       Runtime: java11
