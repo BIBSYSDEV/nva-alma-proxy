@@ -1,12 +1,10 @@
 package no.unit.nva.alma;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class Config {
 
-    public static final String MISSING_ENVIRONMENT_VARIABLES = "Missing environment variables";
     public static final String CORS_ALLOW_ORIGIN_HEADER_ENVIRONMENT_NAME = "ALLOWED_ORIGIN";
-    public static final String ALMA_SRU_HOST_KEY = "ALMA_SRU_HOST";
+    public static final String ALMA_HOST_DEFAULT = "bibsys.alma.exlibrisgroup.com";
     public static final String ALMA_SRU_QUERY_PATH = "view/sru/47BIBSYS_NETWORK";
 
     private String corsHeader;
@@ -21,25 +19,13 @@ public class Config {
         private static final Config INSTANCE = new Config();
 
         static {
-            INSTANCE.setAlmaSruHost(System.getenv(ALMA_SRU_HOST_KEY));
+            INSTANCE.setAlmaSruHost(ALMA_HOST_DEFAULT);
             INSTANCE.setCorsHeader(System.getenv(CORS_ALLOW_ORIGIN_HEADER_ENVIRONMENT_NAME));
         }
     }
 
     public static Config getInstance() {
         return LazyHolder.INSTANCE;
-    }
-
-    /**
-     * Checking if almaSruHost is present.
-     *
-     * @return <code>TRUE</code> if property is present.
-     */
-    public boolean checkProperties() {
-        if (StringUtils.isEmpty(almaSruHost)) {
-            throw new RuntimeException(MISSING_ENVIRONMENT_VARIABLES);
-        }
-        return true;
     }
 
     public void setAlmaSruHost(String almaSruHost) {

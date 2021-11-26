@@ -53,7 +53,6 @@ public class FetchAlmaRecordHandler implements RequestHandler<Map<String, Object
         System.out.println(input);
         GatewayResponse gatewayResponse = new GatewayResponse();
         try {
-            Config.getInstance().checkProperties();
             this.checkParameters(input);
         } catch (MissingParameterException e) {
             DebugUtils.dumpException(e);
@@ -99,5 +98,4 @@ public class FetchAlmaRecordHandler implements RequestHandler<Map<String, Object
             throw new MissingParameterException(MANDATORY_PARAMETER_CREATORNAME_MISSING);
         }
     }
-
 }
