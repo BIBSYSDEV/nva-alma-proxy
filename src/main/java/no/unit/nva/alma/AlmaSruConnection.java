@@ -50,5 +50,4 @@ public class AlmaSruConnection {
                 .build();
         return uri.toURL();
     }
-
 }

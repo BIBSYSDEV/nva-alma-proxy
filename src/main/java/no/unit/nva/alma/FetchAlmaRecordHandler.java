@@ -99,5 +99,4 @@ public class FetchAlmaRecordHandler implements RequestHandler<Map<String, Object
             throw new MissingParameterException(MANDATORY_PARAMETER_CREATORNAME_MISSING);
         }
     }
-
 }
