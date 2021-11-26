@@ -35,9 +35,9 @@ Parameters:
     Type: String
     Description: Base path mapping in CustomDomain
   AlmaSruHost:
-    Type: String
-    Description: Address to Alma-SRU
-    Default: '{{resolve:ssm:almaSruHost:1}}'
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Description: Host for Alma-SRU URI
+    Default: AlmaSruHost
 
 Resources:
 
