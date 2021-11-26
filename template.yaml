@@ -29,10 +29,6 @@ Parameters:
     Type: String
     Default: alma
     Description: Base path mapping in CustomDomain
-  AlmaSruHost:
-    Type: 'AWS::SSM::Parameter::Value<String>'
-    Default: AlmaApiUri
-    Description: Address to Alma-SRU
 
 Resources:
   ApiAccessLogGroup:
