@@ -1,5 +1,8 @@
 package no.unit.cql.formatter;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +15,8 @@ public class TestCqlFormatter {
     public static final String FAKE_NAME = "Nameson, Name";
     public static final String IBSEN_SCN = "90061718";
     public static final String IBSEN_HENRIK = "Ibsen, Henrik";
+
+    private final Clock clock = Clock.fixed(Instant.parse("2021-12-03T10:15:30.00Z"), ZoneId.systemDefault());
 
     @Test
     public void assertExists() {
@@ -39,8 +44,8 @@ public class TestCqlFormatter {
     }
 
     @Test
-    public void assertReturnsCqlWithDateQuery() {
-        CqlFormatter cqlFormatter = new CqlFormatter()
+    public void shouldReturnQueryForPublicationYearsWithinTheArbitraryWindowOfThePast40Years() {
+        CqlFormatter cqlFormatter = new CqlFormatter(clock)
                 .withAuthorityId(FAKE_AUTHORITY_ID)
                 .withRetrospective(true);
         String expected = "alma.authority_id=123 AND "
@@ -72,7 +77,7 @@ public class TestCqlFormatter {
 
     @Test
     public void assertFullyFeaturedBuilder() {
-        CqlFormatter cqlFormatter = new CqlFormatter()
+        CqlFormatter cqlFormatter = new CqlFormatter(clock)
                 .withAuthorityId(FAKE_AUTHORITY_ID)
                 .withCreator(FAKE_NAME)
                 .withRetrospective(true)
@@ -123,7 +128,7 @@ public class TestCqlFormatter {
                 + "OR%20alma.main_pub_date=2020%20OR%20alma.main_pub_date=2021)"
                 + "%20sortBy%20alma.main_pub_date%2Fsort.descending";
 
-        String encoded = new CqlFormatter()
+        String encoded = new CqlFormatter(clock)
                 .withRetrospective(true)
                 .withSorting(true)
                 .withAuthorityId(IBSEN_SCN)
